@@ -109,6 +109,19 @@
       <li><a href="#!">Second Link</a></li>
       <li><a href="#!" onclick="utilJS.carregaDivPagina('divConteudo', 'pagina1.html', null)">Início</a></li>
       <li><a href="#!" onclick="utilJS.carregaDivPagina('divConteudo', 'getCEP.html', null)">Consulta CEP</a></li>
+      <li class="no-padding">
+       <ul class="collapsible collapsible-accordion">
+        <li>
+         <a class="collapsible-header">Páginas<i class="material-icons">arrow_drop_down</i></a>
+         <div class="collapsible-body">
+          <ul>
+           <li><a href="#!" onclick="utilJS.carregaDivPagina('divConteudo', 'pagina1.html', null)">Início</a></li>
+           <li><a href="#!"onclick="utilJS.carregaDivPagina('divConteudo', 'getCEP.html', null)">Consulta CEP</a></li>           
+          </ul>
+         </div>
+        </li>
+       </ul>
+      </li>
       <li><div class="divider"></div></li>
       <li><a class="subheader">Subheader</a></li>
       <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
@@ -198,7 +211,7 @@
   <script>
 
    $.ajaxSetup({cache: false});
-   
+
    //carrega a primeira página
    utilJS.carregaDivPagina('divConteudo', 'pagina1.html', null);
 

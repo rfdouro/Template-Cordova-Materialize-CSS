@@ -88,22 +88,25 @@
 
 $(document).ready(function () {
  $.ajaxSetup({cache: false});
+ //mostra o load no carregamento ajax via jquery
  $(document).ajaxStart(function () {
   $('.preloader-background').fadeIn('fast');
   $('.preloader-wrapper')
           .fadeIn();
  });
+ //limpa o load no carregamento ajax via jquery
  $(document).ajaxComplete(function () {
-  $('.preloader-background').delay(500).fadeOut('slow');
+  $('.preloader-background').delay(50).fadeOut('slow');
   $('.preloader-wrapper')
-          .delay(500)
+          .delay(50)
           .fadeOut();
  });
 });
 
+//limpa o load no carregamento da página
 $(window).on('load', function () {
- $('.preloader-background').delay(500).fadeOut('slow');
+ $('.preloader-background').delay(50).fadeOut('slow');
  $('.preloader-wrapper')
-         .delay(500)
+         .delay(50)
          .fadeOut();
 });
