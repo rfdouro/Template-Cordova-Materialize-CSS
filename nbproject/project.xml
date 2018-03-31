@@ -9,6 +9,10 @@
             <library name="jquery" version="3.3.1">
                 <file localPath="www/js/libs/jquery/jquery.min.js" path="jquery.min.js"/>
             </library>
+            <library name="jquery.mask" version="1.14.15">
+                <file localPath="www/js/libs/jquery.mask/jquery.mask.js" path="jquery.mask.js"/>
+                <file localPath="www/js/libs/jquery.mask/jquery.mask.min.js" path="jquery.mask.min.js"/>
+            </library>
             <library name="materialize" version="1.0.0-beta">
                 <file localPath="www/js/libs/materialize/css/materialize.css" path="css/materialize.css"/>
                 <file localPath="www/js/libs/materialize/css/materialize.min.css" path="css/materialize.min.css"/>

@@ -1,29 +1,57 @@
 
 
-<!-- Inicio do formulario -->
-<form method="get" action=".">
- <label>Cep:
-  <input name="cep" type="text" id="cep" value="29148-180" size="10" maxlength="9" /></label><br />
- <label>Rua:
-  <input name="rua" type="text" id="rua" size="60" /></label><br />
- <label>Bairro:
-  <input name="bairro" type="text" id="bairro" size="40" /></label><br />
- <label>Cidade:
-  <input name="cidade" type="text" id="cidade" size="40" /></label><br />
- <label>Estado:
-  <input name="uf" type="text" id="uf" size="2" /></label><br />
- <label>IBGE:
-  <input name="ibge" type="text" id="ibge" size="8" /></label><br />
-</form>
+<div class="row">
+ <div class="col m3">
 
-<button id="btnConsulta" class="btn">Consultar</button>
+ </div>
+ <div class="col m6">
+  <h1 class="header center green-text">Consulta de CEP</h1>
+  <h2 class="subheader center blue-text">Usando <a class="btn" href="https://viacep.com.br/" target="blank">ViaCEP</a></h2>
+ </div>
+ <div class="col m3">
+
+ </div>
+</div>
+
+<div class="row">
+ <div class="col m3">
+
+ </div>
+ <div class="col m6">
+  <!-- Inicio do formulario -->
+  <form method="get" id="formConsultaCEP">
+   <label>Cep:
+    <input name="cep" type="text" id="cep" value="29148-180" size="10" maxlength="9" /></label><br />
+   <label>Rua:
+    <input name="rua" type="text" id="rua" size="60" /></label><br />
+   <label>Bairro:
+    <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+   <label>Cidade:
+    <input name="cidade" type="text" id="cidade" size="40" /></label><br />
+   <label>Estado:
+    <input name="uf" type="text" id="uf" size="2" /></label><br />
+   <label>IBGE:
+    <input name="ibge" type="text" id="ibge" size="8" /></label><br />
+    
+    <input type="submit" id="btnConsulta" class="btn" value="Consultar" />
+  </form>
+ </div>
+ <div class="col m3">
+
+ </div>
+
+</div>
 
 
 
+
+<script src="js/libs/jquery.mask/jquery.mask.min.js" type="text/javascript"></script>
 <!-- Adicionando Javascript -->
 <script type="text/javascript" >
 
  $(document).ready(function () {
+
+  $("#cep").mask('99999-999');
 
   function limpa_formulário_cep() {
    // Limpa valores do formulário de cep.
@@ -33,60 +61,72 @@
    $("#uf").val("");
    $("#ibge").val("");
   }
-  /*
-   //Quando o campo cep perde o foco.
-   $("#cep").blur(function () {
-   
-   //Nova variável "cep" somente com dígitos.
-   var cep = $(this).val().replace(/\D/g, '');
-   
-   //Verifica se campo cep possui valor informado.
-   if (cep != "") {
-   
-   //Expressão regular para validar o CEP.
-   var validacep = /^[0-9]{8}$/;
-   
-   //Valida o formato do CEP.
-   if (validacep.test(cep)) {
-   
-   //Preenche os campos com "..." enquanto consulta webservice.
-   $("#rua").val("...");
-   $("#bairro").val("...");
-   $("#cidade").val("...");
-   $("#uf").val("...");
-   $("#ibge").val("...");
-   
-   //Consulta o webservice viacep.com.br/
-   $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-   
-   if (!("erro" in dados)) {
-   //Atualiza os campos com os valores da consulta.
-   $("#rua").val(dados.logradouro);
-   $("#bairro").val(dados.bairro);
-   $("#cidade").val(dados.localidade);
-   $("#uf").val(dados.uf);
-   $("#ibge").val(dados.ibge);
-   } //end if.
-   else {
-   //CEP pesquisado não foi encontrado.
-   limpa_formulário_cep();
-   alert("CEP não encontrado.");
-   }
-   });
-   } //end if.
-   else {
-   //cep é inválido.
-   limpa_formulário_cep();
-   alert("Formato de CEP inválido.");
-   }
-   } //end if.
-   else {
-   //cep sem valor, limpa formulário.
-   limpa_formulário_cep();
-   }
-   });
-   */
 
+  function consultaCEP() {
+
+   try {
+
+    //Nova variável "cep" somente com dígitos.
+    var cep = $("#cep").val().replace(/\D/g, '');
+    //Verifica se campo cep possui valor informado.
+    if (cep != "") {
+
+     //Expressão regular para validar o CEP.
+     var validacep = /^[0-9]{8}$/;
+     //Valida o formato do CEP.
+     if (validacep.test(cep)) {
+
+      //Preenche os campos com "..." enquanto consulta webservice.
+      $("#rua").val("...");
+      $("#bairro").val("...");
+      $("#cidade").val("...");
+      $("#uf").val("...");
+      $("#ibge").val("...");
+      //Consulta o webservice viacep.com.br/
+      $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+       if (!("erro" in dados)) {
+        //Atualiza os campos com os valores da consulta.
+        $("#rua").val(dados.logradouro);
+        $("#bairro").val(dados.bairro);
+        $("#cidade").val(dados.localidade);
+        $("#uf").val(dados.uf);
+        $("#ibge").val(dados.ibge);
+       } //end if.
+       else {
+        //CEP pesquisado não foi encontrado.
+        limpa_formulário_cep();
+        //alert("CEP não encontrado.");
+        M.toast({html: "CEP não encontrado"});
+       }
+      }).done(function () {
+       //M.toast({html: "Ok"});
+      })
+              .fail(function (jqxhr, textStatus, error) {
+               var err = textStatus + ", " + error;
+               //alert("Request Failed: " + err);
+               M.toast({html: "Requisição falhou: " + err});
+              })
+              .always(function () {
+
+              });
+     } //end if.
+     else {
+      //cep é inválido.
+      limpa_formulário_cep();
+      alert("Formato de CEP inválido.");
+     }
+    } //end if.
+    else {
+     //cep sem valor, limpa formulário.
+     limpa_formulário_cep();
+    }
+   } catch (e) {
+    alert(e);
+   }
+  }
+
+/*
   $("#btnConsulta").on('click', function () {
 
    try {
@@ -133,7 +173,7 @@
                M.toast({html: "Requisição falhou: " + err});
               })
               .always(function () {
-               
+
               });
      } //end if.
      else {
@@ -149,6 +189,13 @@
    } catch (e) {
     alert(e);
    }
+  });
+*/
+  $("#formConsultaCEP").submit(function (e) {
+   e.preventDefault();
+   var formData = $(this).serialize();
+
+   consultaCEP();
   });
 
  });
