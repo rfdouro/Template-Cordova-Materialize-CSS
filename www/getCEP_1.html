@@ -22,22 +22,22 @@
   <form method="get" id="formConsultaCEP">
    <label>Cep:
     <input name="cep" type="text" id="cep" value="29148-180" size="10" maxlength="9" /></label><br />
-   <div id="result">
-    <label>Rua:
-     <input name="rua" type="text" id="rua" size="60" value="{{:logradouro}}" /></label><br />
-    <label>Bairro:
-     <input name="bairro" type="text" id="bairro" size="40" value="{{:bairro}}" /></label><br />
-    <label>Cidade:
-     <input name="cidade" type="text" id="cidade" size="40" value="{{:localidade}}" /></label><br />
-    <label>Estado:
-     <input name="uf" type="text" id="uf" size="2" value="{{:uf}}" /></label><br />
-    <label>IBGE:
-     <input name="ibge" type="text" id="ibge" size="8" value="{{:ibge}}" /></label><br />
-   </div>
+   <div id="result"></div>
    <input type="submit" id="btnConsulta" class="btn" value="Consultar" />
   </form>
 
-
+  <script id="theTmpl" type="text/x-jsrender">
+   <label>Rua:
+   <input name="rua" type="text" id="rua" size="60" value="{{:logradouro}}" /></label><br />
+   <label>Bairro:
+   <input name="bairro" type="text" id="bairro" size="40" value="{{:bairro}}" /></label><br />
+   <label>Cidade:
+  <input name="cidade" type="text" id="cidade" size="40" value="{{:localidade}}" /></label><br />
+  <label>Estado:
+   <input name="uf" type="text" id="uf" size="2" value="{{:uf}}" /></label><br />
+  <label>IBGE:
+   <input name="ibge" type="text" id="ibge" size="8" value="{{:ibge}}" /></label><br />
+  </script>
  </div>
  <div class="col m3">
 
@@ -65,9 +65,7 @@ var data = [
 $(document).ready(function () {
 
 
- var template = $.templates("#result");
- var htmlOutput = template.render(data);
- $("#result").html(htmlOutput);
+ var template = $.templates("#theTmpl");
 
  $("#cep").mask('99999-999');
 
