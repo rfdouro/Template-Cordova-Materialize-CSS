@@ -13,6 +13,20 @@
                 <file localPath="www/js/libs/jquery.mask/jquery.mask.js" path="jquery.mask.js"/>
                 <file localPath="www/js/libs/jquery.mask/jquery.mask.min.js" path="jquery.mask.min.js"/>
             </library>
+            <library name="jsviews" version="0.9.90">
+                <file localPath="www/js/libs/jsviews/jquery.observable.js" path="jquery.observable.js"/>
+                <file localPath="www/js/libs/jsviews/jquery.observable.min.js" path="jquery.observable.min.js"/>
+                <file localPath="www/js/libs/jsviews/jquery.observable.min.js.map" path="jquery.observable.min.js.map"/>
+                <file localPath="www/js/libs/jsviews/jquery.views.js" path="jquery.views.js"/>
+                <file localPath="www/js/libs/jsviews/jquery.views.min.js" path="jquery.views.min.js"/>
+                <file localPath="www/js/libs/jsviews/jquery.views.min.js.map" path="jquery.views.min.js.map"/>
+                <file localPath="www/js/libs/jsviews/jsrender.js" path="jsrender.js"/>
+                <file localPath="www/js/libs/jsviews/jsrender.min.js" path="jsrender.min.js"/>
+                <file localPath="www/js/libs/jsviews/jsrender.min.js.map" path="jsrender.min.js.map"/>
+                <file localPath="www/js/libs/jsviews/jsviews.js" path="jsviews.js"/>
+                <file localPath="www/js/libs/jsviews/jsviews.min.js" path="jsviews.min.js"/>
+                <file localPath="www/js/libs/jsviews/jsviews.min.js.map" path="jsviews.min.js.map"/>
+            </library>
             <library name="materialize" version="1.0.0-beta">
                 <file localPath="www/js/libs/materialize/css/materialize.css" path="css/materialize.css"/>
                 <file localPath="www/js/libs/materialize/css/materialize.min.css" path="css/materialize.min.css"/>
